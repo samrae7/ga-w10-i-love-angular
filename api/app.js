@@ -72,6 +72,21 @@ router.route('/posts/:id')
     })
   })
 
+// EDIT A POST
+
+router.route('/posts/:id')
+  .put(function (req, res) {
+    Post.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
+        if(err) console.log(err)
+        console.log('req.body', req.body)
+        console.log('response', response)
+         response.save(function(err) {
+              if (err) res.send(err);
+              res.json({ message: 'Post updated!' });
+          });
+    })
+  })
+
 
 //====================
 app.use('/', router);

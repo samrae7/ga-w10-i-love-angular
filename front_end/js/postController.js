@@ -10,7 +10,26 @@ function PostController($http) {
   self.addPost = addPost;
   self.newPost = {};
   self.getPosts = getPosts;
-  self.order_by = '';
+  self.sort = '-created';
+  self.show_form = false;
+
+  self.showForm = showForm;
+  self.like = like;
+
+  function like(id, likes) {
+    console.log('likes', likes)
+    $http
+      .put('http://localhost:3000/posts/'+id, {'likes': likes + 1 }). 
+        then(function(response){
+          console.log(response)
+          self.getPosts()
+        })
+
+  }
+
+  function showForm(){
+    self.show_form = self.show_form ? false : true
+  }
 
   getPosts();
 
