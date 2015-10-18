@@ -8,42 +8,58 @@
   <script src="./js/app.js"></script>
   <script src="js/postController.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure.css"> 
+
+  <!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]--> 
 </head>
 
 <body ng-controller="PostController as posts">
-  
-  <h1>I love Angular</h1>
 
-  <button ng-click="posts.showForm()">Add a new post</button>
+  <div class="pure-g">
+    <div class="pure-u-1-8">
+    </div>
+    <div class="pure-u-3-4">
+      <h1>I love Angular</h1>
 
-  <form ng-if="posts.show_form" ng-submit="posts.addPost()">
-    <input type="text" ng-model='posts.newPost.name' placeholder="name">
-    <input type="text" ng-model='posts.newPost.description' placeholder="description">
-    <input type="submit" value="add Post">
-  </form>
-  
-  <form>
-    <label for="searchBox" class="active">Search: </label>
-    <input type="text" id='searchBox' ng-model="searchText" placeholder="e.g. how cool is Angular?">
-  </form>
+      <button ng-click="posts.showForm()">Add a new post</button>
 
-  <form>
-    <label for="order_by" class="active">Order by:</label>
-    <select name="Order by" id="order_by" ng-model="posts.sort">
-      <option value="-created">date created</option> 
-      <option value="name">name</option>
-      <option value="-likes">popularity</option>
-    </select>
-  </form> 
+      <form ng-if="posts.show_form" ng-submit="posts.addPost()">
+        <input type="text" ng-model='posts.newPost.name' placeholder="name">
+        <input type="text" ng-model='posts.newPost.description' placeholder="description">
+        <input type="submit" value="add Post">
+      </form>
+      
+      <form>
+        <label for="searchBox" class="active">Search: </label>
+        <input type="text" id='searchBox' ng-model="searchText" placeholder="e.g. how cool is Angular?">
+      </form>
 
-  <ul>
-    <li ng-repeat="post in posts.all | filter:searchText | orderBy:posts.sort">{{post.name}}
-    {{post.created | date: 'MM/dd/yyyy HH:mm'}}
-    {{post.author}}<br>
-    Likes: {{post.likes}}
-    <i class="small material-icons" ng-click="posts.like(post._id, post.likes)">thumb_up</i>
-    </li>
-  </ul>
+      <form>
+        <label for="order_by" class="active">Order by:</label>
+        <select name="Order by" id="order_by" ng-model="posts.sort">
+          <option value="-created">date created</option> 
+          <option value="name">name</option>
+          <option value="-likes">popularity</option>
+        </select>
+      </form> 
+
+      <ul>
+        <li ng-repeat="post in posts.all | filter:searchText | orderBy:posts.sort">{{post.name}}
+        {{post.created | date: 'MM/dd/yyyy HH:mm'}}
+        {{post.author}}<br>
+        Likes: {{post.likes}}
+        <i class="small material-icons" ng-click="posts.like(post._id, post.likes)">thumb_up</i>
+        </li>
+      </ul>
+    </div>
+    <div class="pure-u-1-8">
+    </div>
+  </div>
       
 </body>
 </html>
