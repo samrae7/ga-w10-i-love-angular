@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="iHateAngular">
+<head>
+  <meta charset="UTF-8">
+  <title>I Hate Angular</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="js/postController.js"></script>
+  
+
+</head>
+
+
+
+<body ng-controller="PostController as posts">
+
+
+  <form ng-submit="posts.addPost()">
+    <input type="text" ng-model='posts.newPost.name' placeholder="name">
+    <input type="text" ng-model='posts.newPost.name' placeholder="name">
+    <input type="text" ng-model='posts.newPost.description' placeholder="description">
+    <input type="submit" value="add Post">
+  </form>
+
+<div>
+  <label for="searchBox">Search: </label>
+  <input type="text" id='searchBox' ng-model="searchText" placeholder="e.g. how cool is Angular?">
+
+  <label for="order_by">Order by:</label>
+  <select name="Order by" id="order_by" ng-model="sort">
+    <option value="created">date created</option> 
+    <option value="name">name</option>
+  </select>
+
+  <ul>
+    <li ng-repeat="post in posts.all | filter:searchText | orderBy:sort">{{post.name}} {{post.created | date: 'MM/dd/yyyy HH:mm'}} {{post.author}}</li>
+  </ul>
+</div>
+  
+</body>
+</html>
