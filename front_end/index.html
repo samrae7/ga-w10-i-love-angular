@@ -4,26 +4,22 @@
   <meta charset="UTF-8">
   <title>I Hate Angular</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-animate.js"></script>
   <script src="./js/app.js"></script>
   <script src="js/postController.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure.css"> 
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="./css/styles.css">
 
-  <!--[if lte IE 8]>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-  <!--<![endif]--> 
 </head>
 
 <body ng-controller="PostController as posts">
-
+<div class="wrapper">
   <div class="pure-g">
     <div class="pure-u-1-8">
     </div>
-    <div class="pure-u-3-4">
+    <div class="central-col pure-u-3-4">
       <h1>I love Angular</h1>
 
       <button ng-click="posts.showForm()">Add a new post</button>
@@ -49,7 +45,7 @@
       </form> 
 
       <ul>
-        <li ng-repeat="post in posts.all | filter:searchText | orderBy:posts.sort">{{post.name}}
+        <li ng-repeat="post in posts.all | filter:searchText | orderBy:posts.sort" class='phone-listing'>{{post.name}}
         {{post.created | date: 'MM/dd/yyyy HH:mm'}}
         {{post.author}}<br>
         Likes: {{post.likes}}
@@ -59,6 +55,7 @@
     </div>
     <div class="pure-u-1-8">
     </div>
+    </div>  
   </div>
       
 </body>

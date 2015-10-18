@@ -1,1 +1,1 @@
-angular.module('iHateAngular', [])
+angular.module('iHateAngular', ['ngAnimate'])
